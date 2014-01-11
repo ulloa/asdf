@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
-  <script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -35,11 +34,10 @@
               <li><a href="#">Live</a></li>
               <li><a href="#">Pending</a></li>
               <li><a href="#">History</a></li>
-              <li class="divider"></li>
             </ul>
 					</li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right" style="margin-right:0px;">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -53,16 +51,18 @@
       </div><!--/.nav-collapse -->
     </div>
 	</nav>
-	<div class="container">
+
+	<div ng-app="" class="container">
 		<div class="panel panel-default" id="panel1">
-			<div class="col-xs-12" id="addtext">
+			<div class="col-xs-12" id="addtext" ng-controller="FirstCtrl">
 				<h1 class="heads">New Ad</h1>
-				<p class="para">Name: <!--JS CODE for user input and to a new document--></p>
+				<p class="para">Name: <input type="text" ng-model="user.adname"></p>
+				<p class="para">Tags: <input type="text" ng-model="user.adname.tags"></p>
 				<p class="para">Image: <!--JSCODE possibly select an approved ad, ad approved elsewhere instead of uploading a potential!--></p>
 				<p class="para">Where: <!--JSCODE display Google Map as well to get GPS data!--></p>
 					<img src="http://www.esri.com/~/media/Images/Content/what-is-gis/graphics/earthquake_map_lg.jpg" class="img-responsive imgpan2">
 				<p class="para">How Much: about $0.00<!--JSCODE calculating per mile*hour and estimated amount of impressions--></p>
-				<p class="para">Submit <!--JSCODE pushing doc--></p>
+				<button ng-click="submit()">Submit</button>
 			</div>
 		</div>
 		<div class="panel panel-default" id="panel2">
@@ -77,6 +77,7 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-	
+  <script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
