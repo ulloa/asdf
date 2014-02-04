@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Website description">
   <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.png">
-  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">  
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
   <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
@@ -30,8 +30,7 @@
         <li><a href="#research">Research</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Ads Status<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Live</a></li>
+          <ul class="dropdown-menu"><li><a href="#">Live</a></li>
             <li><a href="#">Pending</a></li>
             <li><a href="#">History</a></li>
           </ul>
@@ -49,39 +48,44 @@
 	</li>
       </ul>
     </div><!--/.nav-collapse -->
-</div>
-</nav>
-
-<div ng-app="app" class="container">
-  <div class="panel panel-default" id="panel1">
-    <div class="col-xs-12" id="addtext" ng-controller="FirstCtrl">
-      <form ng-upload="uploadComplete(content)" action="/upload-full-form">
-	<h1 class="heads">New Ad</h1>
-	<p class="para">Name: <input type="text" ng-model="user.adname"/></p>
-	<p class="para">Tags: <input type="text" ng-model="user.adname.tags"/></p>
-	<p class="para">Image: <input type="file" name="user.adname.imagefile"/></p>
-	<p class="para">Where: <input type="text" ng-model="user.adname.gpsloc"/></p>
-	<img src="http://www.technorms.com/wp-content/uploads/2010/06/MultiplePointsDistanceVikiTech.png" class="img-responsive imgpan2">
-	<p class="para">How Much: about $0.00<!--JSCODE calculating per mile*hour and estimated amount of impressions--></p>
-	<!--	<button ng-click="submit">Submit</button> -->
-	<input type="submit" class="btn" value="Submit" ng-disabled="$isLoading"/>
-      </form>
+  </nav>
+  <div ng-app="app" class="container">
+    <div class="panel panel-default" id="panel1">
+      <div class="row">
+	<div class="col-xs-12" ng-controller="FirstCtrl">
+	  <form ng-upload="uploadComplete(content)" name="upload" action="/upload-full-form" method="post" enctype="multipart/form-data">
+	    <h1 class="heads">New Ad</h1>
+	    <p>Name: <input type="text" ng-model="user.adname"></p>
+	    <p>Tags: <input type="text" ng-model="user.adname.tags"></p>
+	    <p>Image: <input type="file" name="theFile" ng-model="user.adname.imagefile"></p>
+	    <p>Where: <input type="text" ng-model="user.adname.gpsloc"></p>
+	    <img src="http://www.technorms.com/wp-content/uploads/2010/06/MultiplePointsDistanceVikiTech.png" class="img-responsive imgpan2">
+	    How Much: about $0.00<!--JSCODE calculating per mile*hour and estimated amount of impressions-->
+	    <button ng-click="submit()">Submit</button>
+	    <!--<input type="submit" class="btn" value="Submit" ng-disabled="$isLoading"/>-->
+	  </form>
+	  <div>
+	    <p>{{user.adname}}</p>
+	    <p>{{user.adname.tags}}</p>
+	    <p>{{user.adname.gpsloc}}</p>
+	  </div>
+	</div>
+      </div>
     </div>
-  </div>
-  <div class="panel panel-default" id="panel2">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-	<p class="heads">Contact us</p>
-	<p class="para" style="padding-top: 7px">949.870.9444</p>
-	<p class="para">samuel@catco.com</p>
+    <div class="panel panel-default" id="panel2">
+      <div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+	  <p class="heads">Contact us</p>
+	  <p class="para" style="padding-top: 7px">949.870.9444</p>
+	  <p class="para">samuel@catco.com</p>
+	</div>
       </div>
     </div>
   </div>
-</div>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-<script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/bower_components/ngUpload/ng-upload.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
+  <script type="text/javascript" src="./public/js/main.js"></script>
+  <script type="text/javascript" src="./public/js/bower_components/ngUpload/ng-upload.min.js"></script>
 </body>
 </html>
