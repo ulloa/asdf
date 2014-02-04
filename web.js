@@ -13,16 +13,17 @@ db.once('open', function () {
 app.use(express.logger());
 app.use("/public", express.static(__dirname + '/public'));
 //app.use(express.bodyParser( { keepExtensions: true, uploadDir: __dirname + '/app/uploads' } ));
-
+app.use(express.bodyParser());
 
 var fs = require('fs');
 var htmlfile = "index.html";
 
 app.post('/upload-full-form',function(req,res){
+    console.log(req.files);
     console.log('FIRST TEST: ' + JSON.stringify(req.files));
     console.log('SECOND TEST: ' + req.files.theFile.name);
     fs.readFile(req.files.theFile.path, function (err, data) {
-        var newPath = __dirname + "/app/uploads/" + req.files.theFile.name;
+        var newPath = __dirname + "/public/" + req.files.theFile.name; //put path here
         fs.writeFile(newPath, data, function (err) {
           res.send("hi");  
         });
