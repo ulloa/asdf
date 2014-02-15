@@ -55,11 +55,11 @@
 	<div class="col-xs-12" ng-controller="FirstCtrl">
 	  <form ng-upload="uploadComplete(content)" name="upload" action="/upload-full-form" method="post" enctype="multipart/form-data">
 	    <h1 class="heads">New Ad</h1>
-	    <p>User: <input type="text" name="user.name" ng-model="user.name"></p>
-	    <p>Name: <input type="text" name="user.ads.adname" ng-model="user.ads"></p>
-	    <p>Tags: <input type="text" name="user.ads.tags" ng-model="user.ads.tags"></p>
+	    <p>Username: <input type="text" name="user.name" ng-model="user.name"></p>
+	    <p>AdName: <input type="text" name="user.ads.adname" ng-model="user.ads"></p>
+	    <p>Tags for Ad: <input type="text" name="user.ads.tags" ng-model="user.ads.tags"></p>
 	    <p>Image: <input type="file" name="theFile" ng-model="user.ads.imagefile"></p>
-	    <p>Where: <input type="text" name="user.ads.gpsloc" ng-model="user.ads.gpsloc"></p>
+	    <p>Where do you want the ad(gps coordinate preferred)?: <input type="text" name="user.ads.gpsloc" ng-model="user.ads.gpsloc"></p>
 	    <img src="http://www.technorms.com/wp-content/uploads/2010/06/MultiplePointsDistanceVikiTech.png" class="img-responsive imgpan2">
 	    How Much: about $0.00<!--JSCODE calculating per mile*hour and estimated amount of impressions-->
 	    <button ng-click="submit()">Submit</button>

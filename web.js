@@ -18,12 +18,13 @@ app.use(express.bodyParser());
 var fs = require('fs');
 var htmlfile = "index.html";
 
-
 app.post('/upload-full-form',function(req,res){
     console.log(req.body);
     console.log('FIRST TEST: ' + JSON.stringify(req.files));
     console.log('SECOND TEST: ' + req.files.theFile.name);
     fs.readFile(req.files.theFile.path, function (err, data) {
+//s3 keys are heroku environmental variables
+//just like mongourl
 	var AWS = require('aws-sdk');
 	AWS.config.region = 'us-west-2';
 	var uuid = require('node-uuid');
@@ -41,7 +42,8 @@ app.post('/upload-full-form',function(req,res){
 	    else 
 	    {
 		console.log("Successfully uploaded data to " + bucketName + "/" + keyName);
-	        var UserSchema = new Object({
+		var Schema = mongoose.Schema;
+		var UserSchema = new Schema({
 		    name: String,
 		    ads: Array
 		});
@@ -58,8 +60,13 @@ app.post('/upload-full-form',function(req,res){
 
 	        var Account = mongoose.model('Accounts', UserSchema);
  	        var newuser = new Account({name: req.body['user.name'], ads: [adSchema]});
-                newuser.save()
-	        res.send("Successfully uploaded to the S3 Storage");
+                newuser.save(function(err){
+		  if(err) console.log(err);
+		});
+	        res.send(fs.readFileSync('bucket.html').toString());
+		s3.getObject(params, function(err, data) {
+		    var test = 'Success'
+		});
 	    }
 	});
 
